@@ -18,7 +18,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All feilds are not filled")
   }
 
-  const isUserAlreadyExist = User.findOne({
+  const isUserAlreadyExist = await User.findOne({
     $or: [{ username }, { email }]
   })
 
@@ -40,7 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 
   if (!avatarCloud) {
-    throw new ApiError(4090, "Avatar Required")
+    throw new ApiError(4090, "Avatar Upload error ")
   }
 
 
